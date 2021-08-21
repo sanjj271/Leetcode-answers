@@ -1,10 +1,11 @@
 class Solution {
 public:
     string simplifyPath(string path) {
-        vector<string> v;
+        vector<string>v;
         istringstream ss(path);
-        string token,result;
-        while(getline(ss,token,'/')){
+        string token;
+        string res;
+        while(getline(ss, token,'/')){
             if(token==""||token=="."){
                 continue;
             }
@@ -14,13 +15,16 @@ public:
             else if(!v.empty()){
                 v.pop_back();
             }
-        }
-        for(auto i :v) result+="/"+i;
-        return (v.empty())?"/":result;
             
+            
+        }
+        for(auto j:v) res=res+"/"+j;
+        return (v.empty())?"/":res;
         
-                      
-                      
+        
+        
+        
+        
         
     }
 };
