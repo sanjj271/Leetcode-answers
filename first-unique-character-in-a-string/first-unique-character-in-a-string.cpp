@@ -1,21 +1,30 @@
 class Solution {
 public:
-    int firstUniqChar(string s) {
-    map<char,int> mp;
+   int firstUniqChar(string s) {
+      map<char,int>mp;
     for(int i=0;i<s.length();i++){
-        mp[s[i]]++;
-    }
-    for(int i=0; i<s.length(); i++){
-         if(mp[s.at(i)] == 1) {
-              return i;
+       mp[s[i]]++; 
+     }
+     for(int i=0;i<s.length();i++ ){
+         if(mp[s.at(i)]==1){
+             return i;
          }
-    }
-    return -1;
-        
-    
-    
+         
     
         
         
+     
+     }
+     return -1;
+     
+    
+       
+      
+      
+       
+       
+      
+       
+
     }
 };
