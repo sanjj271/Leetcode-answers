@@ -1,26 +1,17 @@
 class Solution {
 public:
-    map<int,int>mp;
-    int fib(int n) {
-      //map<int,int>mp;
-      if(n==0 || n==1){
-          return n;
-      }
-      if(mp.find(n)==mp.end()){
-          mp[n] = fib(n-1) + fib(n-2);
-      }
-    return mp[n];
-         
+    vector<int>v1;  
+    int fib(int n){
+    v1.push_back(0);
+    v1.push_back(1);
+    for(int i =2 ;i<=n;i++){
+        v1.push_back(v1[i-1] + v1[i-2]);
+        
+    }
+    return v1[n];
+
     
-
-         
-        
-
-      
-     
-        
-        
-        
+    
         
     }
 };
