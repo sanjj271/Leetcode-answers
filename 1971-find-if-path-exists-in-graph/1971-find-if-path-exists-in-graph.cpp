@@ -20,9 +20,9 @@ public:
             return true;
         }
        // if(visited[start]) return false;
-        if(mp[start].size()==0){
-           return false; 
-        } 
+        //if(mp[start].size()==0){
+          // return false; 
+        //} 
         visited[start]=true;
         for(int j = 0 ;j < mp[start].size();j++){
             if(visited[mp[start][j]]==false){
