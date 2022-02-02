@@ -2,9 +2,10 @@ class Solution {
 public:
     int nr, nc;
     void dfs(int i , int j , vector<vector<char>>&board){
-    if(i<0 || j<0 || i==nr || j==nc || board[i][j]!='X') {
-    return;
+    if( i<0 || j<0 || i==nr || j==nc || board[i][j]!='X'){
+        return;
     }
+    //if(i<0 || j<0 || i==nr || j==n || board[i][j]!='X') return;
     board[i][j]='.';
     cout<<"i ="<<i<<endl;
     cout<<"j ="<<j<<endl;    
