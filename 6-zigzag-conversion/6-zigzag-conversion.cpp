@@ -1,47 +1,40 @@
-#define UP 1
-#define DOWN 2
-
+#define up 0
+#define down 1
 class Solution {
 public:
     string convert(string s, int numRows) {
+    int direct = down;
+    int a = 0;
+    string res = "";
     vector<vector<char>>vect(numRows);
-    int direct = DOWN;
-    int a =0;
-    string res="";
     if(numRows == 1){
-        for(int i =0;i<s.size();i++){
-            res = res+s[i];
-        }
-        return res;
+        return s;
     }
-    for(int i =0 ;i < s.length() ;i++){
-    if( direct == DOWN && a!= numRows){
+    for(int i=0;i<s.size();i++){
+        if(direct == down && a!= numRows){
         vect[a].push_back(s[i]);
-         a++;
-        if(a == numRows) {
-         direct = UP;
-         a--;
+        a++;
+        if(a == numRows){
+            direct = up;
+            a--;
+        }
+        }
+        else if(direct == up && a!= 0){
+            a--;
+            vect[a].push_back(s[i]);
+            if(a == 0){
+                direct = down;
+                a++;
+            }
         }
     }
-    else if(direct == UP && a!= 0){
-        a--;
-        vect[a].push_back(s[i]);  
-        if(a == 0) {
-         direct = DOWN;
-         a++;
+    for(int m = 0; m < vect.size();m++){
+        for(int n =0;n<vect[m].size();n++){
+            res = res + vect[m][n];
         }
-    }
-   
-    }
-    for(int k =0;k<vect.size();k++){
-        for(int m =0;m<vect[k].size();m++){
-            res = res + vect[k][m];
-            
-        }
-        
     }
     return res;
-    
+        
         
     }
 };
