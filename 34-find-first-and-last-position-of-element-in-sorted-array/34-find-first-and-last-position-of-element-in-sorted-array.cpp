@@ -51,7 +51,7 @@ public:
     return -1;
         
     }
-    //(nums[mid2]==target && mid2 == nums.size()-1) || (nums[mid2]==target && nums[mid2+1]!=target)
+    
  
     
   
