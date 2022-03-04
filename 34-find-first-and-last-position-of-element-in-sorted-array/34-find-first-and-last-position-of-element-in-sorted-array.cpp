@@ -3,9 +3,7 @@ public:
     vector<int> searchRange(vector<int>& nums, int target) {
     vector<int>res;
     int a = BinarySearchStart(nums,target);
-    cout<<a<<endl;
     int b = BinarySearchEnd(nums,target);
-    cout<<b<<endl;
     res.push_back(a);
     
     res.push_back(b);
