@@ -7,12 +7,6 @@ public:
     if( n ==2){
         return "11";
     }
-    if( n ==3){
-        return "21";
-    }
-    if( n ==4){
-        return "1211";
-    }
     else{
         int i =0;
         int count = 1;
