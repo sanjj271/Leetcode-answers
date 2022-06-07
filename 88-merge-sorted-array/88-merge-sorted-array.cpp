@@ -7,7 +7,7 @@ public:
     }
     for(int i =0;i<nums1.size();i++){
         if(nums1[i]==0 && i>=m ){
-             a = i;
+            a = i;
             break;
         }
     }
