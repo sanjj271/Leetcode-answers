@@ -1,55 +1,48 @@
 class Solution {
 public:
     vector<int> spiralOrder(vector<vector<int>>& matrix) {
-    vector<int> vec;
     int row = matrix.size();
-    int column = matrix[0].size();
+    int col = matrix[0].size();
     int left = 0;
-    int right = column -1;
-    int top = 0;
-    int bottom = row-1;
-    int dir = 0;
-    if(row == 0){
-        return vec;
+    int right = col -1;
+    int top =0;
+    int bottom = row -1;
+    vector<int>res;
+    int d = 0;
+    while(left <= right && top <=bottom){
+    if(d == 0){
+        for(int i= left; i<= right;i++){
+            res.push_back(matrix[top][i]);
+        }
+        d =1;
+        top++;
     }
-    while(left<= right && top<=bottom){
-        if(dir == 0){
-            for(int i =left; i<=right; i++){
-                cout<<matrix[top][i]<<endl;
-                vec.push_back(matrix[top][i]);
-            }
-            dir = 1;
-            top++;
+    else if(d == 1){
+        for(int i =top ; i<=bottom ;i++){
+            res.push_back(matrix[i][right]);
         }
-        else if(dir == 1){
-            for(int i = top ; i<= bottom;i++){
-                 cout<<matrix[i][right]<<endl;
-                vec.push_back(matrix[i][right]);
-            }
-            dir = 2;
-            right --;
-            
+        d = 2;
+        right--;
+    }
+    else if(d == 2){
+        for(int i = right ;i>=left;i--){
+            res.push_back(matrix[bottom][i]);
         }
-        else if(dir ==2){
-            for(int i =right;i>=left;i--){
-                 cout<<matrix[bottom][i]<<endl;
-                vec.push_back(matrix[bottom][i]);
-            }
-            dir = 3;
-            bottom --;
-            
+        d = 3;
+        bottom --;
+    }
+    else if( d ==3){
+        for(int i =bottom ; i>=top;i--){
+            res.push_back(matrix[i][left]);
         }
-        else if( dir ==3){
-            for(int i = bottom ; i >= top;i--){
-                 cout<<matrix[i][left]<<endl;
-                vec.push_back(matrix[i][left]);
-            }
-            dir = 0;
-            left++;
-        }
+        d = 0;
+        left ++;
+    }
         
     }
-    return vec;
+    return res;
+        
+    
         
     }
 };
