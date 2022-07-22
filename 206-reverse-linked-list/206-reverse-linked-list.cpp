@@ -15,10 +15,13 @@ public:
         return head;
     }
     ListNode* temp = reverseList(head->next);
-    head->next->next=head;
+    ListNode* x = temp;
+    while(temp->next!=NULL){
+        temp=temp->next;
+    }
+    temp->next = head;
     head->next=NULL;
-    return temp;
-  
+    return x;
     }
 };
     
