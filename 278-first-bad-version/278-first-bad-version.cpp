@@ -11,7 +11,7 @@ public:
          if(isBadVersion(m) && !isBadVersion(m-1)){
            return m;  
          }
-         else if(isBadVersion(m) && isBadVersion(m-1)){
+         else if(isBadVersion(m)){
              r = m-1;
          }
          else{
