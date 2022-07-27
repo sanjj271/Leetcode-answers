@@ -1,37 +1,35 @@
 class Solution {
 public:
-    int oldcolor;
+   int oldcolor;
     vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
-        int nr = image.size();
-        int nc= image[0].size();
-        oldcolor=image[sr][sc];
-        if(oldcolor == color){
-            return image;
-        }
-        dfs(image,sr,sc,color);
-    
+    int nr = image.size();
+    int nc = image[0].size();
+    oldcolor=image[sr][sc];
+    if(oldcolor == color){
         return image;
-        
-        
     }
-    void dfs(vector<vector<int>>& image, int row,int col,  int newcolor){
-        int nr = image.size();
-        int nc= image[0].size();
-        image[row][col]=newcolor;
-        if(row+1<nr && image[row+1][col]==oldcolor ){
-            dfs(image,row+1,col,newcolor);
-        }
-        if(col+1<nc && image[row][col+1]==oldcolor){
-            dfs(image,row,col+1,newcolor);
-        }
-        if(col-1>=0 && image[row][col-1]==oldcolor){
-            dfs(image,row,col-1,newcolor);
-        }
-        if(row-1>=0 && image[row-1][col]==oldcolor){
-            dfs(image,row-1,col,newcolor);
-        }
-        
-        
-    }
+    Dfs(image,sr,sc,color);
+    return image;
     
+    
+     
+        
+    }
+    void Dfs(vector<vector<int>>& image, int i,int j,int newcolor){
+     int nr = image.size();
+     int nc = image[0].size();
+     image[i][j]=newcolor;
+     if(i-1>=0 && image[i-1][j]==oldcolor){
+         Dfs(image,i-1,j,newcolor);
+     }
+    if(i+1 <nr &&image[i+1][j]==oldcolor){
+        Dfs(image,i+1,j,newcolor);
+    }
+    if(j-1>=0 && image[i][j-1]==oldcolor){
+        Dfs(image,i,j-1,newcolor);
+    }
+    if(j+1<nc && image[i][j+1]==oldcolor){
+        Dfs(image,i,j+1,newcolor);
+    }
+    }
 };
