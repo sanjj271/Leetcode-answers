@@ -11,19 +11,17 @@ class Solution {
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
     if(isSubtree(root->left,p) && isSubtree(root->right,q)){
-        cout<<"im here1"<<endl;
         return root;
     }
     if(isSubtree(root->left,p) && isSubtree(root->left,q)){
-        cout<<"im here2"<<endl;
         return lowestCommonAncestor(root->left,p,q);
     }
     if(isSubtree(root->right,p) && isSubtree(root->right,q)){
-        cout<<"im here3"<<endl;
+        
         return lowestCommonAncestor(root->right,p,q);
     }
     if(root->val == p->val){
-         cout<<"im here4"<<endl;
+        
          if(isSubtree(root->right,q) || root->val == q->val ){
              return root;
          }
