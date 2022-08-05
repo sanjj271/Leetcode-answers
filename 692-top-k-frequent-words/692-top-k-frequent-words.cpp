@@ -32,8 +32,6 @@ public:
     priority_queue<word, vector<word>, decltype(it)> pq(it);
     map<string,int>mp;
     vector<string>ans;
-    vector<int>v1;
-    int maxval = INT_MIN;
     for(int i=0;i<words.size();i++){
         mp[words[i]]++;
     }
