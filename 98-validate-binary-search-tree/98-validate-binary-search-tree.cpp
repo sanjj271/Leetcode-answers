@@ -12,40 +12,29 @@
 class Solution {
 public:
     bool isValidBST(TreeNode* root) {
-    if(!root){
+    if(root==NULL){
         return true;
     }
-    else if(!root->left && !root->right){
-        return true;
+    vector<int>ans;
+    inorder(root,ans);
+    for(int i=0;i<ans.size()-1;i++){
+        if(ans[i]>=ans[i+1]){
+            return false;
+        }
     }
-    else if(root->left == NULL && root->val < root->right->val && lowestval(root->right) > root->val ){
-        
-        return isValidBST(root->right);
-    }
-    else if(root->right == NULL && root->val > root->left->val && highestval(root->left) < root->val ){
-       
-        return isValidBST(root->left);
-    } 
-    else if(root->left && root->right && root->val > root->left->val && root->val < root->right->val){
-        if (isValidBST(root->left) && isValidBST(root->right) && highestval(root->left) < root->val &&  lowestval(root->right) > root->val){
-            return true;
-        }   
-    }
-    return false;
+    return true;
+    
+    
         
     }
-    int highestval(TreeNode* root){
-    TreeNode* current = root;
-    while(current->right!=NULL){
-        current = current->right;
+    void inorder(TreeNode* root , vector<int>&ans){
+    if(root==NULL){
+        return ;
     }
-    return(current->val);
+    inorder(root->left,ans);
+    ans.push_back(root->val);
+    inorder(root->right,ans);
     }
-    int lowestval(TreeNode* root){
-    TreeNode* current = root;
-    while(current->left!=NULL){
-        current = current->left;
-    }
-    return(current->val);
-    }
+    
+    
 };
