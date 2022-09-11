@@ -7,8 +7,9 @@ public:
         stringstream ss(paths[i]);
         string word;
         string root;
-        ss>>root;
-        while(ss>>word){
+        //ss>>root;
+        getline(ss,root,' ');
+        while(getline(ss,word,' ')){
             int a =word.find('(',0);
             int b = word.find(')',a);
             string x = word.substr(0,a);
