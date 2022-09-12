@@ -13,7 +13,7 @@ public:
     }
     sort(v1.begin(),v1.end(),cmp);
     for(auto j : v1){
-       ans.push_back(j.first);
+      ans.push_back(j.first);
         if(ans.size()==k){
             break;
         }
