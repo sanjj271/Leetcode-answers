@@ -1,50 +1,73 @@
 class Solution {
-    int maxCombineArea(const vector<int> &height, int s, int m, int e) {
-        // Expand from the middle to find the max area containing height[m] and height[m+1]
-        int i = m, j = m+1;
-        int area = 0, h = min(height[i], height[j]);
-        while(i >= s && j <= e) {
-            h = min(h, min(height[i], height[j]));
-            area = max(area, (j-i+1) * h);
-            if (i == s) {
-                ++j;
-            }
-            else if (j == e) {
-                --i;
-            }
-            else {
-                // if both sides have not reached the boundary,
-                // compare the outer bars and expand towards the bigger side
-                if (height[i-1] > height[j+1]) {
-                    --i;
-                }
-                else {
-                    ++j;
-                }
-            }
-        }
-        return area;
-    }
-    int maxArea(const vector<int> &height, int s, int e) {
-        // if the range only contains one bar, return its height as area
-        if (s == e) {
-            return height[s];
-        }
-        // otherwise, divide & conquer, the max area must be among the following 3 values
-        int m = s + (e-s)/2;
-        // 1 - max area from left half
-        int area = maxArea(height, s, m);
-        // 2 - max area from right half
-        area = max(area, maxArea(height, m+1, e));
-        // 3 - max area across the middle
-        area = max(area, maxCombineArea(height, s, m, e));
-        return area;
-    }
 public:
-    int largestRectangleArea(vector<int> &height) {
-        if (height.empty()) {
-            return 0;
-        }
-        return maxArea(height, 0, height.size()-1);
+    int largestRectangleArea(vector<int>& heights) {
+    vector<int>heights2(heights.size()+2);
+    for(int i =1;i<=heights.size();i++){
+        heights2[i]=heights[i-1];
+    }
+    vector<int>ansleft= SmallestToLeft(heights2);
+    vector<int>ansRight= SmallestToRight(heights2);
+    vector<int>leftans;
+    vector<int>rightans;
+    vector<int>res;
+    for(int i =0;i<heights2.size();i++){
+        leftans.push_back(i - ansleft[i]);
+        rightans.push_back(ansRight[i]-i);
+    }
+    for(int i =0;i<leftans.size();i++){
+        int x = (leftans[i]+rightans[i]) - 1;
+        int y = x*heights2[i];
+        res.push_back(y);
+    }
+    auto maxIt = std::max_element(res.begin(), res.end());
+    int maxValue = *maxIt;
+    return maxValue;
+    }
+
+
+    vector<int>SmallestToLeft(vector<int>heights2){
+    vector<int>res(heights2.size());
+    stack<pair<int,int>>st;
+    for(int i =0;i<heights2.size();i++){
+    while(!st.empty() && st.top().first>=heights2[i]){
+        st.pop();
+    }
+    if(st.empty()){
+        res[i]=-1;
+        st.push(make_pair(heights2[i],i));
+    }
+    else if(!st.empty() && st.top().first<heights2[i]){
+        res[i]= st.top().second;
+        st.push(make_pair(heights2[i],i));
+    }
+
+    }
+    return res;
+    
+
+    }
+
+    //____________________________________________________________
+
+    vector<int>SmallestToRight(vector<int>heights2){
+    vector<int>res(heights2.size());
+    stack<pair<int,int>>st;
+    for(int i =heights2.size()-1;i>=0;i--){
+    while(!st.empty() && st.top().first>=heights2[i]){
+        st.pop();
+    }
+    if(st.empty()){
+        res[i]=-1;
+        st.push(make_pair(heights2[i],i));
+    }
+    else if(!st.empty() && st.top().first<heights2[i]){
+        res[i]= st.top().second;
+        st.push(make_pair(heights2[i],i));
+    }
+
+    }
+    return res;
+    
+
     }
 };
